@@ -8,7 +8,7 @@ class Customers:
     credit_limit = ""
     salesperson = ""
     isObsoleted = ""
-     # The init method or constructor
+    # The init method or constructor
     def __init__(self, title):
         self.title = title
     # setter method to set customer name
