@@ -1,7 +1,8 @@
 import csv
 import json
+import pandas as pd
 import Customers
-
+import os
 
 
 # Function to convert a CSV to JSON
@@ -29,25 +30,60 @@ def make_json(csvFilePath, jsonFilePath, primaryKey):
     with open(jsonFilePath, 'w', encoding='utf-8') as jsonf:
         jsonf.write(json.dumps(data, indent=4))
 
+# Return the attributes of customer object
+def load_customer_obj(customer_name, customer_data):
+    customer_code = customer_data[customer_name]["\ufeff*Customer Code"]
+    customer_type = customer_data[customer_name]["Customer Type"]
+    payment_term = customer_data[customer_name]["Payment Terms"]
+    credit_limit = customer_data[customer_name]["Credit Limit"]
+    salesperson = customer_data[customer_name]["Salesperson"]
+    salesperson_prefix = str(salesperson.split(":", 1)[0])
+    isObsoleted = customer_data[customer_name]["IsObsoleted"]
+    return customer_code,customer_type,payment_term, credit_limit,salesperson, salesperson_prefix, isObsoleted
+
 
 def main():
-    customer_name = "a1"
-    customer_code = "a010"
-    customer_type = "food"
-    payment_term = "cod"
-    credit_limit = "1000"
-    salesperson = "03:avin"
-    isObsoleted = "false"
-    csvFilePath = r'Customers.csv'
-    jsonFilePath = r'Customers.json'
+    customerCsvFilePath = r'Customers.csv'
+    customerJsonPath = r'Customers.json'
+    csvFilePath = r"Planway_Poultry_Inc__-_Aged_Receivables_Summary.xlsx"
 
     # Call the make_json function
-    make_json(csvFilePath, jsonFilePath, "*Customer Name")
-    customer = Customers.Customers(customer_name)
-    customer.set_customer_name(customer_name)
-    customer.set_customer_code(customer_code)
+    make_json(customerCsvFilePath, customerJsonPath, "*Customer Name")
+    # Construct customer object using the json file
+    with open(customerJsonPath, "r") as content:
+        customer_data = json.loads(content.read())
     
-    print(customer.get_customer_code())
+    
+    # customer_name = ""
+    # customer_code,customer_type,payment_term, credit_limit,salesperson, salesperson_prefix, isObsoleted = load_customer_obj(customer_name , customer_data)
 
+    df = pd.DataFrame(pd.read_excel(csvFilePath))
+    num_of_col = len(list(df))
+    num_of_row = len(df)
+    num_of_balances = num_of_col - 2
+
+    contact = list(df)[0]
+    
+    for i in range(0, num_of_row):
+        customer_name = str(df[contact][i])
+        if(customer_name in customer_data):
+            print(i)
+        
+        i+=1
+
+    os.remove(customerJsonPath)
+  
+
+    # df = pd.DataFrame(pd.read_excel(csvFilePath))
+    # print(df["Aged Receivables Summary"][6])
+    # jsonFilePath = r'Customers.json'
+    # cust = "A.C.E. WHOLESALE"
+    # with open(jsonFilePath, "r") as content:
+    #     customer_data = json.loads(content.read())
+    #     # key = list(customer_data.keys())
+    #     # value = list(customer_data.values())
+    #     for k,v in customer_data.items():
+    #         if k == df["Aged Receivables Summary"][6]:
+    #             print(list(v.keys())[0])
 if __name__ == "__main__":
     main()
