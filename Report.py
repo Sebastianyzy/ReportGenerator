@@ -14,6 +14,13 @@ def get_most_recent_weekdays(day):
     last_weekday = today - timedelta(days=offset)
     return "{} {} {}".format(last_weekday.strftime('%a'), last_weekday.strftime("%b"),last_weekday.strftime("%d"))
 
+# Return the file name which contain keyword
+def get_filename(keyword):
+    current_dir = os.listdir() 
+    for i in current_dir:
+        if keyword.lower() in i.lower():
+            return str(i)
+    return ""
 
 
 # Function to convert a CSV to JSON
