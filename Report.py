@@ -4,8 +4,20 @@ import pandas as pd
 import os
 from openpyxl import Workbook
 from openpyxl.styles import Font
+from datetime import date
+from datetime import timedelta
+
+# This function gets the most recent week days, input integer 1...7, 1 = Monday...7 = Sunday
+def get_most_recent_weekdays(day):
+    today = date.today()
+    offset = (today.weekday() - (day-1))
+    last_weekday = today - timedelta(days=offset)
+    return "{} {} {}".format(last_weekday.strftime('%a'), last_weekday.strftime("%b"),last_weekday.strftime("%d"))
 
 
+
+# Function to convert a CSV to JSON
+# Takes the file paths as arguments
 def make_json(csvFilePath, jsonFilePath, primaryKey):
     # create a dictionary
     data = {}
@@ -48,7 +60,7 @@ def construct_customer_dictionary(customers, customerJsonPath):
     return customer_data
 
 
-def generate_report(filename, workbook, sheet, customercsv, customerjson, aged_receivables_summary, line_num):
+def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, aged_receivables_summary, line_num, font_style, font_size):
     customer_data = construct_customer_dictionary(customercsv, customerjson)
     df = pd.DataFrame(pd.read_excel(aged_receivables_summary))
     #starting line
@@ -66,8 +78,7 @@ def generate_report(filename, workbook, sheet, customercsv, customerjson, aged_r
     older = list(df)[num_of_col-2]
     # total balance owed, the last column of the file
     total = list(df)[num_of_col-1]
-
-    cell_font = Font(name="Arial", size=11, bold=False)
+    cell_font = Font(name=font_style, size=font_size, bold=False)
     number_format = "0.00"
     # loop through the contact list, and start generate report
     for i in range(0, num_of_row):
