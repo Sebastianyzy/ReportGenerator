@@ -86,6 +86,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
     # total balance owed, the last column of the file
     total = list(df)[num_of_col-1]
     cell_font = Font(name=font_style, size=font_size, bold=False)
+    cell_border = Border(bottom=Side(style='thin'))
     number_format = "0.00"
     # loop through the contact list, and start generate report
     for i in range(0, num_of_row):
@@ -97,45 +98,52 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             customer_code, customer_type, payment_term, credit_limit, salesperson, salesperson_prefix, isObsoleted = load_customer_obj(
                 customer_name, customer_data)
             # input salesperson
-            sheet.cell(row=output_file_row_num,
-                       column=1).font = cell_font
-            sheet.cell(row=output_file_row_num,
-                       column=1).number_format = number_format
-            sheet.cell(row=output_file_row_num,
-                       column=1).value = salesperson_prefix
+            c1 = sheet.cell(row=output_file_row_num,column=1)
+            c1.font = cell_font
+            c1.number_format = number_format
+            c1.border = cell_border
+            c1.value = salesperson_prefix
+            
 
             # input customer name
-            sheet.cell(row=output_file_row_num, column=2).font = cell_font
-            sheet.cell(row=output_file_row_num,
-                       column=2).number_format = number_format
-            sheet.cell(row=output_file_row_num, column=2).value = customer_name
+            c2 = sheet.cell(row=output_file_row_num, column=2)
+            c2.font = cell_font
+            c2.number_format = number_format
+            c2.border = cell_border
+            c2.value = customer_name
+            
 
             # input customer code
-            sheet.cell(row=output_file_row_num, column=3).font = cell_font
-            sheet.cell(row=output_file_row_num,
-                       column=3).number_format = number_format
-            sheet.cell(row=output_file_row_num, column=3).value = customer_code
+            c3 = sheet.cell(row=output_file_row_num, column=3)
+            c3.font = cell_font
+            c3.number_format = number_format
+            c3.border = cell_border
+            c3.value = customer_code
+            
 
             # input payment term
-            sheet.cell(row=output_file_row_num, column=4).font = cell_font
-            sheet.cell(row=output_file_row_num,
-                       column=4).number_format = number_format
-            sheet.cell(row=output_file_row_num, column=4).value = payment_term
+            c4= sheet.cell(row=output_file_row_num, column=4)
+            c4.font = cell_font
+            c4.number_format = number_format
+            c4.border = cell_border
+            c4.value = payment_term
 
             # input credit limit
-            sheet.cell(row=output_file_row_num, column=5).font = cell_font
-            sheet.cell(row=output_file_row_num,
-                       column=5).number_format = number_format
-            sheet.cell(row=output_file_row_num, column=5).value = credit_limit
+            c5=sheet.cell(row=output_file_row_num, column=5)
+            c5.font = cell_font
+            c5.number_format = number_format
+            c5.border = cell_border
+            c5.value = credit_limit
 
             # input current owed, current owed = current + (<1 week)
             current_owed = df[current][i]
             leone_week_owed = df[leone_week][i]
-            sheet.cell(row=output_file_row_num, column=6).font = cell_font
-            sheet.cell(row=output_file_row_num,
-                       column=6).number_format = number_format
+            c6=sheet.cell(row=output_file_row_num, column=6)
+            c6.font = cell_font
+            c6.number_format = number_format
             num = float(current_owed)+float(leone_week_owed)
-            sheet.cell(row=output_file_row_num, column=6).value = '({0:.2f})'.format(
+            c6.border = cell_border
+            c6.value = '({0:.2f})'.format(
                 abs(num)) if num < 0 else '{0:.2f}'.format(num)
 
             # input the rest of the balance
@@ -144,23 +152,25 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
                 c = sheet.cell(row=output_file_row_num, column=k)
                 c.font = cell_font
                 num = float(df[list(df)[j]][i])
+                c.border = cell_border
                 c.value = '({0:.2f})'.format(abs(num)) if num < 0 else '{0:.2f}'.format(num)
                 k += 1
 
             # older balance owed
-            sheet.cell(row=output_file_row_num, column=k).font = cell_font
-            sheet.cell(row=output_file_row_num,
-                       column=k).number_format = number_format
+            ck = sheet.cell(row=output_file_row_num, column=k)
+            ck.font = cell_font
+            ck.number_format = number_format
             num = float(df[older][i])
-            sheet.cell(row=output_file_row_num, column=k).value = '({0:.2f})'.format(
+            ck.border = cell_border
+            ck.value = '({0:.2f})'.format(
                 abs(num)) if num < 0 else '{0:.2f}'.format(num)
 
             # total balance owed
-            sheet.cell(row=output_file_row_num, column=k+1).font = cell_font
-            sheet.cell(row=output_file_row_num, column=k +
-                       1).number_format = number_format
+            ck1 =  sheet.cell(row=output_file_row_num, column=k+1)
+            ck1.font = cell_font
+            ck1.number_format = number_format
             num = float(df[total][i])
-            sheet.cell(row=output_file_row_num, column=k +
-                       1).value = '({0:.2f})'.format(abs(num)) if num < 0 else '{0:.2f}'.format(num)
+            ck1.border = cell_border
+            ck1.value = '({0:.2f})'.format(abs(num)) if num < 0 else '{0:.2f}'.format(num)
         i += 1
     workbook.save(filename)
