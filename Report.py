@@ -3,7 +3,7 @@ import json
 import pandas as pd
 import os
 from openpyxl import Workbook
-from openpyxl.styles import Font
+from openpyxl.styles import Font, Border, Side
 from datetime import date
 from datetime import timedelta
 
