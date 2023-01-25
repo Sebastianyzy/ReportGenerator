@@ -12,7 +12,7 @@ import Report
 def main():
     CUSTOMERS = Report.get_filename("Customer")
     AGED_RECEIVABLES_SUMMARY = Report.get_filename("Aged_Receivables_Summary")
-    customerJsonPath = r'Customers.json'
+    customerJsonPath = r'customers_data.json'
     report_file_name = "PlanwayIndividualAgeingReport.xlsx"
 
     # create a workbook to store aging report
