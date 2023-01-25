@@ -3,7 +3,7 @@ import json
 import pandas as pd
 import os
 from openpyxl import Workbook
-from openpyxl.styles import Font, Border, Side
+from openpyxl.styles import Font, Border, Side, Alignment
 from datetime import date
 from datetime import timedelta
 import Report
@@ -78,6 +78,7 @@ def main():
         sheet.cell(row=output_file_row_num, column=6 +
                    i).font = Font(name="Arial", size=10, bold=True)
         sheet.cell(row=output_file_row_num, column=6+i).border =  Border(top = Side(style = "thin"),bottom=Side(style='thin'))
+        sheet.cell(row=output_file_row_num, column=6+i).alignment = Alignment(wrap_text=True)
         sheet.cell(row=output_file_row_num, column=6 +
                    i).value = f"{i} Week\nOverdue" if i == 1 else f"{i} Weeks\nOverdue"
     # Older

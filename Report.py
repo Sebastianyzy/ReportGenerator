@@ -3,7 +3,7 @@ import json
 import pandas as pd
 import os
 from openpyxl import Workbook
-from openpyxl.styles import Font, Border, Side
+from openpyxl.styles import Font, Border, Side,Alignment
 from datetime import date
 from datetime import timedelta
 
@@ -87,6 +87,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
     total = list(df)[num_of_col-1]
     cell_font = Font(name=font_style, size=font_size, bold=False)
     cell_border = Border(bottom=Side(style='thin'))
+    cell_alignment = Alignment(wrap_text=True)
     number_format = "0.00"
     # loop through the contact list, and start generate report
     for i in range(0, num_of_row):
@@ -102,6 +103,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             c1.font = cell_font
             c1.number_format = number_format
             c1.border = cell_border
+            #c1.alignment = cell_alignment
             c1.value = salesperson_prefix
             
 
@@ -110,6 +112,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             c2.font = cell_font
             c2.number_format = number_format
             c2.border = cell_border
+            #c2.alignment = cell_alignment
             c2.value = customer_name
             
 
@@ -118,6 +121,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             c3.font = cell_font
             c3.number_format = number_format
             c3.border = cell_border
+            #c3.alignment = cell_alignment
             c3.value = customer_code
             
 
@@ -126,6 +130,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             c4.font = cell_font
             c4.number_format = number_format
             c4.border = cell_border
+            #c4.alignment = cell_alignment
             c4.value = payment_term
 
             # input credit limit
@@ -133,6 +138,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             c5.font = cell_font
             c5.number_format = number_format
             c5.border = cell_border
+            #c5.alignment = cell_alignment
             c5.value = credit_limit
 
             # input current owed, current owed = current + (<1 week)
@@ -143,6 +149,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             c6.number_format = number_format
             num = float(current_owed)+float(leone_week_owed)
             c6.border = cell_border
+            #c6.alignment = cell_alignment
             c6.value = '({0:.2f})'.format(
                 abs(num)) if num < 0 else '{0:.2f}'.format(num)
 
@@ -153,6 +160,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
                 c.font = cell_font
                 num = float(df[list(df)[j]][i])
                 c.border = cell_border
+                #c.alignment = cell_alignment
                 c.value = '({0:.2f})'.format(abs(num)) if num < 0 else '{0:.2f}'.format(num)
                 k += 1
 
@@ -162,6 +170,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             ck.number_format = number_format
             num = float(df[older][i])
             ck.border = cell_border
+            #ck.alignment = cell_alignment
             ck.value = '({0:.2f})'.format(
                 abs(num)) if num < 0 else '{0:.2f}'.format(num)
 
@@ -171,6 +180,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             ck1.number_format = number_format
             num = float(df[total][i])
             ck1.border = cell_border
+            #ck1.alignment = cell_alignment
             ck1.value = '({0:.2f})'.format(abs(num)) if num < 0 else '{0:.2f}'.format(num)
         i += 1
     workbook.save(filename)
