@@ -136,7 +136,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
                        column=6).number_format = number_format
             num = int(current_owed)+int(leone_week_owed)
             sheet.cell(row=output_file_row_num, column=6).value = '({0:.2f})'.format(
-                abs(num)) if num < 0 else num
+                abs(num)) if num < 0 else '{0:.2f}'.format(num)
 
             # input the rest of the balance
             k = 7
@@ -144,7 +144,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
                 c = sheet.cell(row=output_file_row_num, column=k)
                 c.font = cell_font
                 num = int(df[list(df)[j]][i])
-                c.value = '({0:.2f})'.format(abs(num)) if num < 0 else num
+                c.value = '({0:.2f})'.format(abs(num)) if num < 0 else '{0:.2f}'.format(num)
                 k += 1
 
             # older balance owed
@@ -153,7 +153,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
                        column=k).number_format = number_format
             num = int(df[older][i])
             sheet.cell(row=output_file_row_num, column=k).value = '({0:.2f})'.format(
-                abs(num)) if num < 0 else num
+                abs(num)) if num < 0 else '{0:.2f}'.format(num)
 
             # total balance owed
             sheet.cell(row=output_file_row_num, column=k+1).font = cell_font
@@ -161,6 +161,6 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
                        1).number_format = number_format
             num = int(df[total][i])
             sheet.cell(row=output_file_row_num, column=k +
-                       1).value = '({0:.2f})'.format(abs(num)) if num < 0 else num
+                       1).value = '({0:.2f})'.format(abs(num)) if num < 0 else '{0:.2f}'.format(num)
         i += 1
     workbook.save(filename)

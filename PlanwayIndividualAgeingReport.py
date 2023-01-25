@@ -46,49 +46,49 @@ def main():
     output_file_row_num += 1
 
     # write a filter row
-    sheet.cell(row=output_file_row_num, column=1).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thick'))
+    sheet.cell(row=output_file_row_num, column=1).border = Border(bottom=Side(style='dashed'))
     # Name
     sheet.cell(row=output_file_row_num, column=2).font = Font(
         name="Arial", size=11, bold=True)
     sheet.cell(row=output_file_row_num, column=2).value = "Name"
-    sheet.cell(row=output_file_row_num, column=2).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thick'))
+    sheet.cell(row=output_file_row_num, column=2).border = Border(bottom=Side(style='dashed'))
     # Code
     sheet.cell(row=output_file_row_num, column=3).font = Font(
         name="Arial", size=11, bold=True)
     sheet.cell(row=output_file_row_num, column=3).value = "Code"
-    sheet.cell(row=output_file_row_num, column=3).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thick'))
+    sheet.cell(row=output_file_row_num, column=3).border = Border( bottom=Side(style='dashed'))
     # Term
     sheet.cell(row=output_file_row_num, column=4).font = Font(
         name="Arial", size=11, bold=True)
     sheet.cell(row=output_file_row_num, column=4).value = "Term"
-    sheet.cell(row=output_file_row_num, column=4).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thick'))
+    sheet.cell(row=output_file_row_num, column=4).border = Border( bottom=Side(style='dashed'))
     # Limit
     sheet.cell(row=output_file_row_num, column=5).font = Font(
         name="Arial", size=11, bold=True)
     sheet.cell(row=output_file_row_num, column=5).value = "Limit"
-    sheet.cell(row=output_file_row_num, column=5).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thick'))
+    sheet.cell(row=output_file_row_num, column=5).border = Border( bottom=Side(style='dashed'))
     # Current
     sheet.cell(row=output_file_row_num, column=6).font = Font(
         name="Arial", size=10, bold=True)
     sheet.cell(row=output_file_row_num, column=6).value = "Current"
-    sheet.cell(row=output_file_row_num, column=6).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thick'))
+    sheet.cell(row=output_file_row_num, column=6).border = Border( bottom=Side(style='dashed'))
     # Week Overdue
     for i in range(1, 5):
         sheet.cell(row=output_file_row_num, column=6 +
                    i).font = Font(name="Arial", size=10, bold=True)
+        sheet.cell(row=output_file_row_num, column=6+i).border = Border(bottom=Side(style='dashed'))
         sheet.cell(row=output_file_row_num, column=6 +
                    i).value = f"{i} Week\nOverdue" if i == 1 else f"{i} Weeks\nOverdue"
-        sheet.cell(row=output_file_row_num, column=6+i).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thick'))
     # Older
     sheet.cell(row=output_file_row_num, column=11).font = Font(
         name="Arial", size=10, bold=True)
     sheet.cell(row=output_file_row_num, column=11).value = "Older"
-    sheet.cell(row=output_file_row_num, column=11).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thick'))
+    sheet.cell(row=output_file_row_num, column=11).border = Border( bottom=Side(style='dashed'))
     # Total
     sheet.cell(row=output_file_row_num, column=12).font = Font(
         name="Arial", size=10, bold=True)
     sheet.cell(row=output_file_row_num, column=12).value = "Total"
-    sheet.cell(row=output_file_row_num, column=12).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thick'))
+    sheet.cell(row=output_file_row_num, column=12).border = Border(bottom=Side(style='dashed'))
 
 
 
