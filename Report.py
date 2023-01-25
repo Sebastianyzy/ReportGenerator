@@ -134,7 +134,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             sheet.cell(row=output_file_row_num, column=6).font = cell_font
             sheet.cell(row=output_file_row_num,
                        column=6).number_format = number_format
-            num = int(current_owed)+int(leone_week_owed)
+            num = float(current_owed)+float(leone_week_owed)
             sheet.cell(row=output_file_row_num, column=6).value = '({0:.2f})'.format(
                 abs(num)) if num < 0 else '{0:.2f}'.format(num)
 
@@ -143,7 +143,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             for j in range(3, num_of_col-2):
                 c = sheet.cell(row=output_file_row_num, column=k)
                 c.font = cell_font
-                num = int(df[list(df)[j]][i])
+                num = float(df[list(df)[j]][i])
                 c.value = '({0:.2f})'.format(abs(num)) if num < 0 else '{0:.2f}'.format(num)
                 k += 1
 
@@ -151,7 +151,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             sheet.cell(row=output_file_row_num, column=k).font = cell_font
             sheet.cell(row=output_file_row_num,
                        column=k).number_format = number_format
-            num = int(df[older][i])
+            num = float(df[older][i])
             sheet.cell(row=output_file_row_num, column=k).value = '({0:.2f})'.format(
                 abs(num)) if num < 0 else '{0:.2f}'.format(num)
 
@@ -159,7 +159,7 @@ def generate_aging_report(filename, workbook, sheet, customercsv, customerjson, 
             sheet.cell(row=output_file_row_num, column=k+1).font = cell_font
             sheet.cell(row=output_file_row_num, column=k +
                        1).number_format = number_format
-            num = int(df[total][i])
+            num = float(df[total][i])
             sheet.cell(row=output_file_row_num, column=k +
                        1).value = '({0:.2f})'.format(abs(num)) if num < 0 else '{0:.2f}'.format(num)
         i += 1

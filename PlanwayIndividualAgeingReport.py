@@ -81,7 +81,7 @@ def main():
                    i).value = f"{i} Week\nOverdue" if i == 1 else f"{i} Weeks\nOverdue"
     # Older
     sheet.cell(row=output_file_row_num, column=11).font = Font(
-        name="Arial", size=10, bold=True)
+        name="Arial", size=10, bold=True) 
     sheet.cell(row=output_file_row_num, column=11).value = "Older"
     sheet.cell(row=output_file_row_num, column=11).border = Border( bottom=Side(style='dashed'))
     # Total
