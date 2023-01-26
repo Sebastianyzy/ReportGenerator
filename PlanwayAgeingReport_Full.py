@@ -13,7 +13,7 @@ def main():
     CUSTOMERS = Report.get_filename("Customer")
     AGED_RECEIVABLES_SUMMARY = Report.get_filename("Aged_Receivables_Summary")
     customerJsonPath = r'customers_data.json'
-    report_file_name = "PlanwayIndividualAgeingReport.xlsx"
+    report_file_name = "PlanwayFullAgeingReport.xlsx"
 
     # create a workbook to store aging report
     wb = Workbook()
@@ -21,18 +21,18 @@ def main():
     output_file_row_num = 1
     output_file_col_num = 1
     col_num_in_alphabets = 64
-    string_size = 11
+    string_size = 10
     num_size = 10
 
     # write title
     # font style = "Arial", size = 20, bold
 
     sheet.column_dimensions[chr(
-        col_num_in_alphabets+output_file_col_num)].width = float(4)
+        col_num_in_alphabets+output_file_col_num)].width = float(6)
     sheet.cell(row=output_file_row_num, column=1).font = Font(
         name="Arial", size=18, bold=True)
     sheet.cell(row=output_file_row_num,
-               column=1).value = "Aged Receivables Summary [INDIVIDUAL]"
+               column=1).value = "Aged Receivables Summary [FULL]"
     output_file_row_num += 1
     # font style = "Arial", size = 14, no bold
     sheet.cell(row=output_file_row_num, column=1).font = Font(
@@ -55,12 +55,19 @@ def main():
     # sheet.row_dimensions[output_file_row_num].height = float(30)
 
     # write a filter row
+
+    # Code
+    sheet.cell(row=output_file_row_num, column=output_file_col_num).font = Font(
+        name="Arial", size=string_size, bold=True)
+    sheet.cell(row=output_file_row_num,
+               column=output_file_col_num).value = "Code"
     sheet.cell(row=output_file_row_num, column=output_file_col_num).border = Border(
         top=Side(style="thin"), bottom=Side(style='thin'))
     sheet.cell(row=output_file_row_num, column=output_file_col_num).alignment = Alignment(
         horizontal='left', vertical='top')
     output_file_col_num += 1
     # Name
+
     sheet.cell(row=output_file_row_num, column=output_file_col_num).font = Font(
         name="Arial", size=string_size, bold=True)
     sheet.cell(row=output_file_row_num,
@@ -72,18 +79,7 @@ def main():
     sheet.column_dimensions[chr(
         col_num_in_alphabets+output_file_col_num)].width = float(29.91)
     output_file_col_num += 1
-    # Code
-    sheet.cell(row=output_file_row_num, column=output_file_col_num).font = Font(
-        name="Arial", size=string_size, bold=True)
-    sheet.cell(row=output_file_row_num,
-               column=output_file_col_num).value = "Code"
-    sheet.cell(row=output_file_row_num, column=output_file_col_num).alignment = Alignment(
-        horizontal='left', vertical='top')
-    sheet.cell(row=output_file_row_num, column=output_file_col_num).border = Border(
-        top=Side(style="thin"), bottom=Side(style='thin'))
-    sheet.column_dimensions[chr(
-        col_num_in_alphabets+output_file_col_num)].width = float(7.73)
-    output_file_col_num += 1
+
     # Term
     sheet.cell(row=output_file_row_num, column=output_file_col_num).font = Font(
         name="Arial", size=string_size, bold=True)
@@ -162,8 +158,8 @@ def main():
         col_num_in_alphabets+output_file_col_num)].width = float(12.91)
 
     # write aging report content
-    Report.generate_aging_report(report_file_name, wb, sheet, CUSTOMERS,
-                                 customerJsonPath, AGED_RECEIVABLES_SUMMARY, output_file_row_num, "Arial", 11, 30)
+    Report.generate_aging_report_full(report_file_name, wb, sheet, CUSTOMERS,
+                                      customerJsonPath, AGED_RECEIVABLES_SUMMARY, output_file_row_num, "Arial", 10, 45)
     os.remove(customerJsonPath)
 
 
