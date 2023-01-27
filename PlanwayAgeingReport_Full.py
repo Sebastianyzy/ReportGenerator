@@ -4,6 +4,7 @@ import pandas as pd
 import os
 from openpyxl import Workbook
 from openpyxl.styles import Font, Border, Side, Alignment
+import datetime
 from datetime import date
 from datetime import timedelta
 import Report
@@ -12,7 +13,7 @@ import Report
 def main():
     CUSTOMERS = Report.get_filename("Customer")
     AGED_RECEIVABLES_SUMMARY = Report.get_filename("Aged_Receivables_Summary")
-    customerJsonPath = r'customers_data.json'
+    customerJsonPath = r'pw_customers_data.json'
     report_file_name = "PlanwayFullAgeingReport.xlsx"
 
     # create a workbook to store aging report
