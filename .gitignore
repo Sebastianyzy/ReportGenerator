@@ -2,8 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-test.py
+TSWIndividualAgeingReport.xlsx
+TSWMonthlyAgeingReport.xlsx
 PlanwayIndividualAgeingReport.xlsx
+PlanwayFullAgeingReport.xlsx
 
 
 
