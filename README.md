@@ -13,7 +13,7 @@ Currently Supports:
 **Installation**\
 `pip install pandas`\
 `pip install openpyxl`\
-`pip install datetime`\
+`pip install datetime`
 
 
 
