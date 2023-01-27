@@ -62,6 +62,7 @@ def main():
         top=Side(style=cell_border), bottom=Side(style=cell_border))
     sheet.cell(row=output_file_row_num, column=output_file_col_num).alignment = Alignment(
         horizontal='left', vertical='top')
+    sheet.row_dimensions[output_file_row_num].height = float(30)   
     output_file_col_num += 1
     # Name
     sheet.cell(row=output_file_row_num, column=output_file_col_num).font = Font(

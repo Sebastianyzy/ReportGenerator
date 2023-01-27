@@ -50,7 +50,7 @@ def main():
     sheet.cell(row=output_file_row_num,
                column=1).value = f"As at {today.strftime('%d')} {today.strftime('%B')} {today.strftime('%Y')}"
     output_file_row_num += 1
-
+ 
     sheet.cell(row=output_file_row_num, column=1).font = Font(
         name=text_style, size=12, bold=False)
     sheet.cell(row=output_file_row_num,
@@ -64,6 +64,7 @@ def main():
         top=Side(style=cell_border), bottom=Side(style=cell_border))
     sheet.cell(row=output_file_row_num, column=output_file_col_num).alignment = Alignment(
         horizontal='left', vertical='top')
+    sheet.row_dimensions[output_file_row_num].height = float(30)    
     output_file_col_num += 1
     # Name
     sheet.cell(row=output_file_row_num, column=output_file_col_num).font = Font(
