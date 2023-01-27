@@ -34,25 +34,25 @@ def main():
     sheet.column_dimensions[chr(
         col_num_in_alphabets+output_file_col_num)].width = float(4)
     sheet.cell(row=output_file_row_num, column=1).font = Font(
-        name=text_style, size=18, bold=True)
+        name=text_style, size=20, bold=True)
     sheet.cell(row=output_file_row_num,
                column=1).value = "Aged Receivables Summary"
     output_file_row_num += 1
     # font style = "Arial", size = 14, no bold
     sheet.cell(row=output_file_row_num, column=1).font = Font(
-        name=text_style, size=12, bold=False)
+        name=text_style, size=14, bold=False)
     sheet.cell(row=output_file_row_num,
                column=1).value = "TORONTO SUN WAH TRADING LTD."
     output_file_row_num += 1
     sheet.cell(row=output_file_row_num, column=1).font = Font(
-        name=text_style, size=12, bold=False)
+        name=text_style, size=14, bold=False)
     # Planway aging report is the most recent wednesday
     sheet.cell(row=output_file_row_num,
                column=1).value = f"As at {today.strftime('%d')} {today.strftime('%B')} {today.strftime('%Y')}"
     output_file_row_num += 1
  
     sheet.cell(row=output_file_row_num, column=1).font = Font(
-        name=text_style, size=12, bold=False)
+        name=text_style, size=14, bold=False)
     sheet.cell(row=output_file_row_num,
                column=1).value = "Ageing by invoice date"
     sheet.row_dimensions[output_file_row_num+1].height = float(30)
