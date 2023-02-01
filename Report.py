@@ -136,7 +136,7 @@ def generate_aging_report_ind(filename, workbook, sheet, customercsv, customerjs
             c4.number_format = number_format
             c4.border = cell_border
             c4.alignment = cell_alignment_str
-            c4.value = payment_term
+            c4.value = payment_term if payment_term != "" else str('0.00')
 
             # input credit limit
             c5 = sheet.cell(row=output_file_row_num, column=5)
@@ -252,7 +252,7 @@ def generate_aging_report_full(filename, workbook, sheet, customercsv, customerj
             c3.number_format = number_format
             c3.border = cell_border
             c3.alignment = cell_alignment_str
-            c3.value = payment_term
+            c3.value = payment_term if payment_term != "" else str('0.00')
 
             # input payment limit
             c4 = sheet.cell(row=output_file_row_num, column=4)
@@ -384,7 +384,7 @@ def generate_monthly_aging_report(filename, workbook, sheet, customercsv, custom
             c4.number_format = number_format
             c4.border = cell_border
             c4.alignment = cell_alignment_str
-            c4.value = payment_term
+            c4.value = payment_term if payment_term != "" else str('0.00')
 
             # input credit limit
             c5 = sheet.cell(row=output_file_row_num, column=5)
