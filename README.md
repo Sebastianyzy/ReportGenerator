@@ -1,7 +1,7 @@
 # ReportGenerator
 
 **Description**\
-Report Generator for TORONTO SUN WAH TRADING LTD and  PLANWAY POULTRY INC
+Report Generator for TORONTO SUN WAH TRADING LTD.
 
 **Features**\
 Currently Supports:\
